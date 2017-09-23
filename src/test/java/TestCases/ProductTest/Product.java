@@ -66,8 +66,12 @@ public class Product {
 			    	  keyword.switchToNewWindow();
 				}else if(value.equals("addToCart")){
 			    	  keyword.addToCart(object);
+				}else if(value.equals("switchDefaultWindow")){
+			    	  keyword.switchDefaultWindow();
+				}else if(value.equals("chooseSize")){
+			    	  keyword.chooseSize(object);
 				}
-		
+				
 			
 		}
 			

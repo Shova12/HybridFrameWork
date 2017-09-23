@@ -141,6 +141,7 @@ public class GenericKeyword {
 		
 	}
 	
+	
 	public void switchToNewWindow() throws InterruptedException{
     	
     	Set<String> window = driver.getWindowHandles();
@@ -159,14 +160,22 @@ public class GenericKeyword {
     	}
     	
     	test.log(LogStatus.INFO, "Switching on New window.");
-    	
-    	
+    		
     }
+	
+	public void chooseSize(String object){
+			getElement(object).click();
+	
+	}
 	
 	public void addToCart(String object){
 		getElement(object).click();
 		test.log(LogStatus.INFO, "Adding to Cart by click on "+object);
 		
+	}
+	public void switchDefaultWindow(){
+		driver.switchTo().defaultContent();
+		test.log(LogStatus.INFO, "Returning to main window.");
 	}
 	public List<WebElement> getElements(String object){
 		List<WebElement> webobjcs = null;
