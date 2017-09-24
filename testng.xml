@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel=none> <!-- -thread-count= "2"....for aprallel execution which just add thread-count number and and define larallel as classes -->>
+  <test name="Test">
+    <classes>
+      <class name="TestCases.RegisterPage.Login"/>
+      <class name="TestCases.ProductPage.Product"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

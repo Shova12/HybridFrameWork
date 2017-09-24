@@ -1,4 +1,4 @@
-package TestCases.ProductTest;
+package TestCases.ProductPage;
 
 import java.io.IOException;
 
@@ -43,12 +43,10 @@ public class Product {
 				String data = xls.getCellData("TestCases", "Data", i);
 				
 				if(value.equals("openBrowser")){
-					keyword.openBrowser(data);
-					
+					keyword.openBrowser(data);	
 				}else if(value.equals("navigate")){
 			    	  keyword.navigate();
-				}
-				else if(value.equals("click")){
+				}else if(value.equals("click")){
 			    	  keyword.click(object);
 				}else if(value.equals("insert")){
 			    	  keyword.insert(object, data);
@@ -64,12 +62,13 @@ public class Product {
 			    	  keyword.verifyElement(object);
 				}else if(value.equals("switchToNewWindow")){
 			    	  keyword.switchToNewWindow();
-				}else if(value.equals("addToCart")){
-			    	  keyword.addToCart(object);
 				}else if(value.equals("switchDefaultWindow")){
-			    	  keyword.switchDefaultWindow();
-				}else if(value.equals("chooseSize")){
-			    	  keyword.chooseSize(object);
+			    	  keyword.switchToDefaultWindow();
+				}else if(value.equals("chooseProductDetail")){
+			    	  keyword.chooseProductDetail(object);
+				}
+				else if(value.equals("closeCurrentWindow")){
+					keyword.closeCurrentWindow();
 				}
 				
 			
