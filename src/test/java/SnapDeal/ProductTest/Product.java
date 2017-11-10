@@ -1,4 +1,4 @@
-package TestCases.ProductTest;
+package SnapDeal.ProductTest;
 
 import java.io.IOException;
 
@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import com.Function.Utility.ExcelReader;
 import com.Function.Utility.ExtentManager;
-import com.Function.Utility.GenericKeyword;
+import com.Function.Utility.SnapDeal.GenericKeyword;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
@@ -26,7 +26,7 @@ public class Product {
 		 test = report.startTest("TestCase name is "+testcase);
 		
 		String WorkSheet = "TestData.xlsx";
-		ExcelReader xls = new ExcelReader(System.getProperty("user.dir")+"\\TestData\\"+WorkSheet);
+		ExcelReader xls = new ExcelReader(System.getProperty("user.dir")+"//TestData//SnapDeal//"+WorkSheet);
 		int rowCount = xls.getRowCount("TestCases");
 		
 		GenericKeyword keyword = new GenericKeyword(test);

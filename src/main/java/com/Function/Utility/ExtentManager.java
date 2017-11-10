@@ -15,8 +15,8 @@ public class ExtentManager {
 			Date d = new Date();
 			String fileName = d.toString().replace(":", "_").replace(" ", "_")+".html";
 			
-			extent = new ExtentReports( System.getProperty("user.dir")+"\\Reports\\"+fileName);
-			extent.loadConfig(new File(System.getProperty("user.dir")+"\\ReportsConfig.xml\\"));
+			extent = new ExtentReports( System.getProperty("user.dir")+"//Reports//"+fileName);
+			extent.loadConfig(new File(System.getProperty("user.dir")+"//ReportsConfig.xml//"));
 			
 			extent.addSystemInfo("QA: ","Krishna")
 					.addSystemInfo("Selenium Version", "2.53")
