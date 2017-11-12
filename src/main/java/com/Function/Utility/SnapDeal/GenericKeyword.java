@@ -1,4 +1,4 @@
-package com.Function.Utility;
+package com.Function.Utility.SnapDeal;
 
 
 import java.io.File;
@@ -22,6 +22,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 
+import com.Function.Utility.ExcelReader;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
@@ -35,7 +36,7 @@ public class GenericKeyword {
 	public GenericKeyword(ExtentTest test) throws IOException{
 		 prop = new Properties();
 		 //System.out.println("Source"+System.getProperty("user.dir"));
-		 file = new FileInputStream(System.getProperty("user.dir")+"\\src\\main\\java\\com\\Function\\Config\\Object.properties");
+		 file = new FileInputStream(System.getProperty("user.dir")+"//src//main//java//com//Function//Config//SnapDeal//Object.properties");
 		 prop.load(file);
 		 
 		 this.test = test;
@@ -314,7 +315,7 @@ public class GenericKeyword {
 		String screenShotFileName = dd.toString().replace(":", "_").replace(" ", "_")+".png";
 		
 		System.out.println(screenShotFileName);
-		String imagePath = System.getProperty("user.dir")+"\\Screenshot\\"+screenShotFileName;
+		String imagePath = System.getProperty("user.dir")+"//ScreenShots//SnapDeal//"+screenShotFileName;
 		
 		File scrFile =((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		
