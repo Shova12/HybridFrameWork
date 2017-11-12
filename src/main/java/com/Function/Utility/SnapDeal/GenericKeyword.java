@@ -20,6 +20,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 
 import com.Function.Utility.ExcelReader;
 import com.relevantcodes.extentreports.ExtentTest;
@@ -74,9 +75,15 @@ public class GenericKeyword {
 			
 	}
 	
+	public void hover(String object){
+		Actions action = new Actions(driver);
+		action.moveToElement(getElement(object)).build().perform();
+		test.log(LogStatus.INFO, "Hovering on "+object);
+	}
+	
 	public void insert(String object, String data){
 		getElement(object).sendKeys(data);
-		test.log(LogStatus.INFO, "Inserting data from Excel : "+data+" on Object"+object);
+		test.log(LogStatus.INFO, "Inserting data from Excel : "+data+" on Object "+object);
 		
 	}
 	public void keyEnter(String object){
@@ -84,6 +91,9 @@ public class GenericKeyword {
 		test.log(LogStatus.INFO, "Clicking on Object : "+object);
 		
 		
+	}
+	public void alert(){
+		driver.switchTo().alert();
 	}
 	
 	public void countList(String object){
@@ -111,6 +121,10 @@ public class GenericKeyword {
 		test.log(LogStatus.INFO, "Reading value from: "+ object +" value on Excel "+ variable);
 		
 	}
+	public void clearData(String object){
+		getElement(object).clear();
+		test.log(LogStatus.INFO, "Clearing data from "+object);
+	}
 
 	public void compare(String object, String variable){
 		System.out.println("The variable from Excel: "+variable);
@@ -136,12 +150,11 @@ public class GenericKeyword {
 			test.log(LogStatus.PASS, "Element is displayed on Screen "+object);
 		}else{
  		   takeScreenShot();
- 		   test.log(LogStatus.FAIL, "Elemnt is not displayed on Screen "+object);
+ 		   test.log(LogStatus.FAIL, "Element is not displayed on Screen "+object);
  	   }
 		
 		
 	}
-	
 	
 	public void switchToNewWindow() throws InterruptedException{
     	
@@ -149,10 +162,9 @@ public class GenericKeyword {
     	
     	System.out.println("Size of windows: "+window.size());
     	
-    	//getElement(object).click();
     	Thread.sleep(3001);
     	
-    	 window = driver.getWindowHandles();
+    	//window = driver.getWindowHandles();
     	for(String windowName: window){
     		System.out.println(driver.getTitle());
 			System.out.println(windowName);
@@ -161,23 +173,87 @@ public class GenericKeyword {
     	}
     	
     	test.log(LogStatus.INFO, "Switching on New window.");
-    		
+    	
     }
-	
-	public void chooseSize(String object){
-			getElement(object).click();
-	
+	public void closeCurrentWindow(){
+		driver.close();
 	}
 	
-	public void addToCart(String object){
+	public void switchToDefaultWindow() throws InterruptedException{
+		String parentWindow = driver.getWindowHandle();
+		driver.switchTo().window(parentWindow);
+		test.log(LogStatus.INFO, "Returning to main window.");
+	}
+	
+	public void switchToIframe(String object){
+		int sizeofFrame = getElements(object).size();
+		System.out.println("No of iFrame: "+sizeofFrame);
+		driver.switchTo().frame(1);
+		test.log(LogStatus.INFO, "Switching on "+ object);
+	}
+	
+	public void chooseProductDetail(String object) throws InterruptedException{
+		
+			int  productDetail = 0;
+			
+			switch(productDetail){	
+			case 1:
+				chooseSize(object);	
+				break;
+			case 2: 
+				chooseColor(object);
+				break;
+							
+			default:
+				addToCart(object);
+				break;
+			}		
+			
+	}
+	
+	public void chooseSize(String object){
+		
+		List<WebElement> sizeLists = getElements(object);
+		System.out.println("Size list: "+sizeLists.size());
+		/*for(int i=0; i<=sizeLists.size(); i++){
+			String List = sizeLists.get(i).getText();
+			System.out.println(List);*/
+			if(getElement(object).isDisplayed()){
+				System.out.println("The element is displayed.");
+				getElement(object).click();
+				test.log(LogStatus.INFO, object+" is displayed.");
+				
+			}	
+			else{
+				System.out.println("Size option is not presence and preceed to next step..");
+				test.log(LogStatus.INFO, object+" is not displayed.");
+			
+			}
+		//}
+		
+		
+	}
+	public void chooseColor(String object){
+		
+		if(getElement(object).isDisplayed()){
+			System.out.println("The element is displayed.");
+			getElement(object).click();
+		}	
+		else{
+			//addToCart(object);
+			System.out.println("Colour option is not presence and preceed to next step.");
+		}
+	}
+	
+	public void addToCart(String object) throws InterruptedException{
+		Thread.sleep(3001);
 		getElement(object).click();
 		test.log(LogStatus.INFO, "Adding to Cart by click on "+object);
 		
+		
 	}
-	public void switchDefaultWindow(){
-		driver.switchTo().defaultContent();
-		test.log(LogStatus.INFO, "Returning to main window.");
-	}
+	
+	
 	public List<WebElement> getElements(String object){
 		List<WebElement> webobjcs = null;
 		if(object.endsWith("_xpath")){
@@ -218,8 +294,6 @@ public class GenericKeyword {
 		return webobj;
 		
 	}
-	
-	
 	
 	public String isSkip(ExcelReader xls, String testcase ){
 		 int run = xls.getRowCount("Cases");
