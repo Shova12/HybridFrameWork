@@ -1,5 +1,7 @@
 package BedBathnBeyond;
 
+import org.testng.annotations.Test;
+import org.testng.annotations.Test;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -11,8 +13,8 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 import com.Function.Utility.ExcelReader;
-import com.Function.Utility.ExtentManager;
 import com.Function.Utility.BedBathnBeyond.GenericKeyword;
+import com.Function.Utility.BedBathnBeyond.ExtentManager;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
@@ -26,7 +28,7 @@ public class FeaturesTest {
 	public void checkFeatures() throws IOException {
 		
 		String testcase = "Features";
-		report = com.Function.Utility.ExtentManager.getInstance();
+		report =ExtentManager.getInstance();
 		test = report.startTest("TestCase Name "+testcase);
 		
 		GenericKeyword keyword = new GenericKeyword(test);

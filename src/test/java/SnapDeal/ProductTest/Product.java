@@ -1,5 +1,7 @@
 package SnapDeal.ProductTest;
 
+import org.testng.annotations.Test;
+import org.testng.annotations.Test;
 import java.io.IOException;
 
 import org.testng.SkipException;
@@ -7,7 +9,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 import com.Function.Utility.ExcelReader;
-import com.Function.Utility.ExtentManager;
+import com.Function.Utility.SnapDeal.ExtentManager;
 import com.Function.Utility.SnapDeal.GenericKeyword;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;

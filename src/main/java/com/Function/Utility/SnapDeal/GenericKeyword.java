@@ -241,7 +241,7 @@ public class GenericKeyword {
 		String screenShotFileName = dd.toString().replace(":", "_").replace(" ", "_")+".png";
 		
 		System.out.println(screenShotFileName);
-		String imagePath = System.getProperty("user.dir")+"\\Screenshot\\"+screenShotFileName;
+		String imagePath = System.getProperty("user.dir")+"//ScreenShots//SnapDeal//"+screenShotFileName;
 		
 		File scrFile =((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		
